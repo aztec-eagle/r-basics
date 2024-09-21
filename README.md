@@ -33,7 +33,7 @@ dim(tom.data)
 ```
 
 
-2. Data Visualization with ggplot2
+#2. Data Visualization with ggplot2
 Histograms
 
 Histograms visualize the distribution of numeric variables. Here's an example plotting displ (engine displacement) from the mpg dataset:
@@ -50,7 +50,6 @@ Handling Distribution Issues: Removing Zero Values
 
 When creating histograms or boxplots for numeric data, it’s important to account for values like zero that can distort the distribution. In this example, we filter out zero values from the aroma column in the coffee_ratings dataset.
 
-r
 
 hist(coffee_ratings$aroma[coffee_ratings$aroma > 0]) #zeros can cause distribution issues
 boxplot(coffee_ratings$aroma[coffee_ratings$aroma > 0]) #zeros can cause distribution issues
@@ -71,32 +70,32 @@ Scatter Plots
 
 Scatter plots visualize the relationship between two numeric variables, like displ (engine displacement) and cty (city miles per gallon):
 
-r
-
+```
 ggplot(mpg, aes(x = displ, y = cty)) +
   geom_point(size = 3, col = "red") +
   ggtitle("Displ vs Cty")
-
+```
 Box Plots
 
 Box plots display the distribution of a numeric variable for each category of a categorical variable. Here's an example showing displ across different vehicle classes:
 
 r
-
+```
 ggplot(mpg, aes(x = class, y = displ)) +
   geom_boxplot() +
   ggtitle("Class vs Displ")
+```
 
-3. Data Manipulation with dplyr
+#3. Data Manipulation with dplyr
 Summarizing Data
 
 The summarize_all() function calculates summary statistics (mean, standard deviation) for all numeric variables.
 
-r
-
+```
 tom_data_mean_sd <- tom.data %>%
   select_if(is.numeric) %>%
   summarize_all(funs(mean(., na.rm = TRUE), sd(., na.rm = TRUE)))
+```
 
 Extracting Top N Observations
 
@@ -129,7 +128,7 @@ which.max(table(airbnb.data$property_type))
 
     Why this is helpful: Knowing the most frequent category in a dataset can provide quick insights, such as understanding the most common property type or item in your data.
 
-4. Handling Missing Data
+#4. Handling Missing Data
 Removing Missing Data
 
 Functions like mean() and sd() include the na.rm = TRUE argument to exclude missing values from calculations.
@@ -159,7 +158,7 @@ apply(coffee_ratings, 2, function(x) sum(is.na(x))) %>%
 
     Why this is helpful: Identifying which columns have the most missing values helps focus your cleaning efforts and determine whether to drop or impute those columns.
 
-5. Categorical Data Summary
+#5. Categorical Data Summary
 Frequency Tables
 
 table() and prop.table() functions generate frequency and proportion tables for categorical variables:
@@ -178,7 +177,7 @@ r
 coffee_ratings_reduced <- coffee_ratings %>%
   filter(country_of_origin == "Mexico" | country_of_origin == "Brazil")
 
-6. Data Frames: What and Why?
+#6. Data Frames: What and Why?
 
 A data frame is a two-dimensional structure (like a table) used to store datasets in R. Each column represents a variable, and each row represents an observation.
 Creating a New Data Frame
@@ -192,7 +191,7 @@ names(coffee_ratings_cup_alt_frame)
 
     Why this is helpful: Creating a new data frame with only the required columns simplifies your analysis by reducing the dataset to the variables you're interested in.
 
-7. Advanced Data Wrangling
+#7. Advanced Data Wrangling
 Calculating Profit and Summarizing by Category
 
 You can create new variables by performing calculations within mutate(). In this example, we calculate the profit for men's and women's sports and then summarize the average profit for each category.
@@ -212,26 +211,26 @@ Excluding Categories from Analysis
 Sometimes, you may want to exclude specific categories from your analysis. The ! operator is used to perform the opposite of the filter condition, excluding unwanted data.
 
 r
-
+```
 sports %>% 
   filter(!grepl("Division III", classification_name)) %>%
   filter(grepl("NCAA", classification_name)) %>%
   tabyl(classification_name)
 
-    Why this is helpful: This code filters out Division III schools while focusing on NCAA categories, refining your dataset for more targeted analysis.
-
-8. Saving Data
+    #Why this is helpful: This code filters out Division III schools while focusing on NCAA categories, refining your dataset for more targeted analysis.
+```
+#8. Saving Data
 
 You can save the processed data to a CSV file using write.csv():
 
-r
-
+```
 write.csv(tom.data, "tom.data.csv")
+```
 
-9. Applying Functions Across Multiple Variables
+#9. Applying Functions Across Multiple Variables
 
 apply() and sapply() functions are useful for applying a function across all columns in a dataset. For example, calculating the mean of all numeric columns in tom.data:
 
-r
-
+```
 sapply(Filter(is.numeric, tom.data), mean, na.rm = TRUE)
+```
