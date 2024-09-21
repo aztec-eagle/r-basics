@@ -11,47 +11,40 @@ This document outlines the key data analysis techniques using the `tidyverse` pa
 
 We start by loading the `tidyverse` package, which provides essential tools for data manipulation (`dplyr`) and visualization (`ggplot2`).
 
-```r
-library(tidyverse)
-
 Exploring Data
 
 You can inspect datasets using the following commands:
 
-    names(): Displays the column names of the dataset.
+```
+library(tidyverse)
 
-    r
+names(): #Displays the column names of the dataset.
+names(mpg): 
 
-names(mpg)
-
-head(): Shows the first few rows of the dataset.
-
-r
-
+head(): #Shows the first few rows of the dataset.
 head(mpg)
 
-str(): Provides a concise summary of the data structure.
-
-r
-
+str(): #Provides a concise summary of the data structure.
 str(tom.data)
 
-dim(): Returns the dimensions of the dataset (number of rows and columns).
+dim(): #Returns the dimensions of the dataset (number of rows and columns).
+dim(tom.data)
 
-r
+```
 
-    dim(tom.data)
 
 2. Data Visualization with ggplot2
 Histograms
 
 Histograms visualize the distribution of numeric variables. Here's an example plotting displ (engine displacement) from the mpg dataset:
 
-r
+```
 
 ggplot(mpg, aes(x = displ)) +
   geom_histogram(col = "red", fill = "green") +
   ggtitle("MPG Histogram")
+
+```
 
 Handling Distribution Issues: Removing Zero Values
 
