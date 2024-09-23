@@ -52,28 +52,25 @@ ggplot(mpg, aes(x = displ)) +
 hist(coffee_ratings$aroma[coffee_ratings$aroma > 0]) #zeros can cause distribution issues
 boxplot(coffee_ratings$aroma[coffee_ratings$aroma > 0]) #zeros can cause distribution issues
 ```
-Bar Plots
-
-Bar plots display the frequency of categorical variables. Below is a plot for the vehicle class:
+- Bar Plots
+  - Bar plots display the frequency of categorical variables. Below is a plot for the vehicle class:
 
 ```
 ggplot(mpg, aes(x = class)) +
   geom_bar(col = "purpled", fill = "cyan") +
   ggtitle("Class of Vehicle")
 ```
-Scatter Plots
-
-Scatter plots visualize the relationship between two numeric variables, like displ (engine displacement) and cty (city miles per gallon):
+- Scatter Plots
+  - Scatter plots visualize the relationship between two numeric variables, like displ (engine displacement) and cty (city miles per gallon):
 
 ```
 ggplot(mpg, aes(x = displ, y = cty)) +
   geom_point(size = 3, col = "red") +
   ggtitle("Displ vs Cty")
 ```
-Box Plots
 
-Box plots display the distribution of a numeric variable for each category of a categorical variable. Here's an example showing displ across different vehicle classes:
-
+- Box Plots
+  - Box plots display the distribution of a numeric variable for each category of a categorical variable. Here's an example showing displ across different vehicle classes:
 
 ```
 ggplot(mpg, aes(x = class, y = displ)) +
@@ -151,6 +148,7 @@ apply(coffee_ratings, 2, function(x) sum(is.na(x))) %>%
 
     #Why this is helpful: Identifying which columns have the most missing values helps focus your cleaning efforts and determine whether to drop or impute those columns.
 ```
+
 ## 5. Categorical Data Summary
 Frequency Tables
 
@@ -168,6 +166,7 @@ Use filter() to subset data based on conditions. Here's an example filtering row
 coffee_ratings_reduced <- coffee_ratings %>%
   filter(country_of_origin == "Mexico" | country_of_origin == "Brazil")
 ```
+
 ## 6. Data Frames: What and Why?
 
 A data frame is a two-dimensional structure (like a table) used to store datasets in R. Each column represents a variable, and each row represents an observation.
@@ -181,6 +180,7 @@ names(coffee_ratings_cup_alt_frame)
 
     Why this is helpful: Creating a new data frame with only the required columns simplifies your analysis by reducing the dataset to the variables you're interested in.
 ```
+
 ## 7. Advanced Data Wrangling
 Calculating Profit and Summarizing by Category
 
@@ -207,6 +207,7 @@ sports %>%
 
     #Why this is helpful: This code filters out Division III schools while focusing on NCAA categories, refining your dataset for more targeted analysis.
 ```
+
 ## 8. Saving Data
 
 You can save the processed data to a CSV file using write.csv():
@@ -217,8 +218,17 @@ write.csv(tom.data, "tom.data.csv")
 
 ## 9. Applying Functions Across Multiple Variables
 
-apply() and sapply() functions are useful for applying a function across all columns in a dataset. For example, calculating the mean of all numeric columns in tom.data:
+- apply() and sapply() functions are useful for applying a function across all columns in a dataset. For example, calculating the mean of all numeric columns in tom.data:
 
 ```
 sapply(Filter(is.numeric, tom.data), mean, na.rm = TRUE)
+```
+
+- Summarizing data with sapply() function
+```
+  #summary statistics - multiple variables
+  sapply(Filter(is.numeric,tom.data), mean, na.rm=T)
+  sapply(Filter(is.numeric,tom.data), sd, na.rm=T)
+  sapply(Filter(is.numeric,tom.data), fivenum)
+  sapply(Filter(is.numeric,tom.data), median, na.rm=T)
 ```
