@@ -33,28 +33,24 @@ dim(tom.data)
 ```
 
 
-# 2. Data Visualization with ggplot2
-Histograms
-
-Histograms visualize the distribution of numeric variables. Here's an example plotting displ (engine displacement) from the mpg dataset:
+## 2. Data Visualization with ggplot2
+- Histograms
+  - Histograms visualize the distribution of numeric variables. Here's an example plotting displ (engine displacement) from the mpg dataset:
+  - Why this is helpful: Zero values can skew the results and create misleading visualizations. By excluding zero values, you ensure the true distribution of non-zero data is accurately represented.
 
 ```
-
 ggplot(mpg, aes(x = displ)) +
   geom_histogram(col = "red", fill = "green") +
   ggtitle("MPG Histogram")
 
 ```
 
-Handling Distribution Issues: Removing Zero Values
-
-When creating histograms or boxplots for numeric data, it’s important to account for values like zero that can distort the distribution. In this example, we filter out zero values from the aroma column in the coffee_ratings dataset.
+- Handling Distribution Issues: Removing Zero Values
+  - When creating histograms or boxplots for numeric data, it’s important to account for values like zero that can distort the distribution. In this example, we filter out zero values from the aroma column in the coffee_ratings dataset.
 
 ```
 hist(coffee_ratings$aroma[coffee_ratings$aroma > 0]) #zeros can cause distribution issues
 boxplot(coffee_ratings$aroma[coffee_ratings$aroma > 0]) #zeros can cause distribution issues
-
-    #Why this is helpful: Zero values can skew the results and create misleading visualizations. By excluding zero values, you ensure the true distribution of non-zero data is accurately represented.
 ```
 Bar Plots
 
@@ -62,7 +58,7 @@ Bar plots display the frequency of categorical variables. Below is a plot for th
 
 ```
 ggplot(mpg, aes(x = class)) +
-  geom_bar(col = "purple", fill = "cyan") +
+  geom_bar(col = "purpled", fill = "cyan") +
   ggtitle("Class of Vehicle")
 ```
 Scatter Plots
@@ -85,7 +81,7 @@ ggplot(mpg, aes(x = class, y = displ)) +
   ggtitle("Class vs Displ")
 ```
 
-# 3. Data Manipulation with dplyr
+## 3. Data Manipulation with dplyr
 Summarizing Data
 
 The summarize_all() function calculates summary statistics (mean, standard deviation) for all numeric variables.
@@ -127,7 +123,7 @@ which.max(table(airbnb.data$property_type))
     #Why this is helpful: Knowing the most frequent category in a dataset can provide quick insights, such as understanding the most common property type or item in your data.
 ```
 
-# 4. Handling Missing Data
+## 4. Handling Missing Data
 Removing Missing Data
 
 Functions like mean() and sd() include the na.rm = TRUE argument to exclude missing values from calculations.
@@ -155,7 +151,7 @@ apply(coffee_ratings, 2, function(x) sum(is.na(x))) %>%
 
     #Why this is helpful: Identifying which columns have the most missing values helps focus your cleaning efforts and determine whether to drop or impute those columns.
 ```
-# 5. Categorical Data Summary
+## 5. Categorical Data Summary
 Frequency Tables
 
 table() and prop.table() functions generate frequency and proportion tables for categorical variables:
@@ -172,7 +168,7 @@ Use filter() to subset data based on conditions. Here's an example filtering row
 coffee_ratings_reduced <- coffee_ratings %>%
   filter(country_of_origin == "Mexico" | country_of_origin == "Brazil")
 ```
-# 6. Data Frames: What and Why?
+## 6. Data Frames: What and Why?
 
 A data frame is a two-dimensional structure (like a table) used to store datasets in R. Each column represents a variable, and each row represents an observation.
 Creating a New Data Frame
@@ -185,7 +181,7 @@ names(coffee_ratings_cup_alt_frame)
 
     Why this is helpful: Creating a new data frame with only the required columns simplifies your analysis by reducing the dataset to the variables you're interested in.
 ```
-# 7. Advanced Data Wrangling
+## 7. Advanced Data Wrangling
 Calculating Profit and Summarizing by Category
 
 You can create new variables by performing calculations within mutate(). In this example, we calculate the profit for men's and women's sports and then summarize the average profit for each category.
@@ -211,7 +207,7 @@ sports %>%
 
     #Why this is helpful: This code filters out Division III schools while focusing on NCAA categories, refining your dataset for more targeted analysis.
 ```
-# 8. Saving Data
+## 8. Saving Data
 
 You can save the processed data to a CSV file using write.csv():
 
@@ -219,7 +215,7 @@ You can save the processed data to a CSV file using write.csv():
 write.csv(tom.data, "tom.data.csv")
 ```
 
-# 9. Applying Functions Across Multiple Variables
+## 9. Applying Functions Across Multiple Variables
 
 apply() and sapply() functions are useful for applying a function across all columns in a dataset. For example, calculating the mean of all numeric columns in tom.data:
 
