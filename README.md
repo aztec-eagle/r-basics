@@ -6,6 +6,13 @@ This is a study guide that helps new R programmers understand the basics of R fo
 # Data Analysis with Tidyverse
 
 This document outlines the key data analysis techniques using the `tidyverse` package, including data manipulation, visualization, and handling missing data.
+- Read files from a data
+```
+sports <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-03-29/sports.csv')
+starbucks <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-12-21/starbucks.csv')
+bigfoot <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-09-13/bigfoot.csv')
+
+```
 
 ## 1. Loading Libraries and Data Exploration
 
